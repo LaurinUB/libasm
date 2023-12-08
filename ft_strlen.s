@@ -1,10 +1,8 @@
 section .text
 
-%include "compile.inc"
+global _ft_strlen
 
-global FT_STRLEN
-
-FT_STRLEN:
+_ft_strlen:
   mov rax, rdi
 
   .LOOP:
