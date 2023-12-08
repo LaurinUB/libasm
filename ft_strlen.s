@@ -1,16 +1,18 @@
-section .data
-hello_world db "Hello, World!",0
-
 section .text
-global _main
 
-_main:
-    mov rax, 0x2000004
-    mov rdi, 1
-    lea rsi, [rel hello_world]
-    mov rdx, 14
-    syscall
+%include "compile.inc"
 
-    mov rax, 0x2000001
-    xor rdi, rdi
-    syscall
+global FT_STRLEN
+
+FT_STRLEN:
+  mov rax, rdi
+
+  .LOOP:
+    cmp BYTE [rax], 0
+    je .BREAK
+    inc rax
+    jmp .LOOP
+
+  .BREAK:
+    sub rax, rdi
+    ret

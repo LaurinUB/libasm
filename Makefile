@@ -1,12 +1,25 @@
-NAME = test
+NAME = libasm
+LIB = libasm.a
 AS = nasm
-ASFLAGS = -f macho64
+ASFLAGS = -iinc -wall -dMACOS=1 -f macho64
+
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+IFLAGS = -I
+
+AR = ar
+ARFLAGS = rcs
 
 SRC = ft_strlen.s
 OBJ = $(SRC:%.s=%.o)
 
-all: $(OBJ)
-	cc $(OBJ) -o $(NAME)
+$(LIB): $(OBJ)
+	$(AR) $(ARFLAGS) $(LIB) $(OBJ) 
+
+$(NAME) : $(LIB)
+	$(CC) $(CFLAGS) main.c $(IFLAGS) libasm.h $(LIB) -o $(NAME)
+
+all: $(NAME)
 
 re: clean all
 
@@ -14,4 +27,4 @@ re: clean all
 	$(AS) $(ASFLAGS) $(SRC)
 
 clean:
-	rm -f $(OBJ) $(NAME)
+	rm -f $(OBJ) $(NAME) $(LIB)
