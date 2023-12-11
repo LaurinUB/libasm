@@ -10,7 +10,7 @@ IFLAGS = -I
 AR = ar
 ARFLAGS = rcs
 
-SRC = ft_strlen.s
+SRC = ft_strlen.s ft_strcmp.s
 OBJ = $(SRC:%.s=%.o)
 
 $(LIB): $(OBJ)
