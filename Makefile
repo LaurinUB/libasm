@@ -30,7 +30,7 @@ re: fclean all
 	$(AS) $(ASFLAGS) $(SRC)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(COBJ)
 
 fclean: clean
 	rm -f $(NAME) $(LIB)
