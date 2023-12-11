@@ -27,10 +27,21 @@ void test_strcpy() {
     free(dest);
 }
 
+#include <unistd.h>
+
+void test_write() {
+    printf("\nWRITE TEST\n");
+    printf("return value: %lu\n", ft_write(-1, "Hello World!\n", 13));
+    perror("ft_write");
+    printf("return value: %lu\n", write(-1, "Hello World!\n", 13));
+    perror("write");
+}
+
 int main() {
     test_strlen();
     test_strcmp();
     test_strcpy();
+    test_write();
 
     return EXIT_SUCCESS;
 }

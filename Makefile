@@ -10,7 +10,7 @@ IFLAGS = -I
 AR = ar
 ARFLAGS = rcs
 
-SRC = ft_strlen.s ft_strcmp.s ft_strcpy.s
+SRC = ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s
 OBJ = $(SRC:%.s=%.o)
 
 CSRC = main.c
