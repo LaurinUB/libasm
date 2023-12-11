@@ -12,16 +12,25 @@ void test_strlen() {
 
 void test_strcmp() {
     const char s1[] = "test";
-    const char s2[] = "test";
+    const char s2[] = "tes";
 
     printf("\nSTRNCMP TEST\ns1: \"%s\", s2: \"%s\"\n", s1, s2);
     printf("ft_strncmp: %d\n", ft_strcmp(s1, s2));
     printf("strncmp: %d\n", strcmp(s1, s2));
 }
 
+void test_strcpy() {
+    const char s1[] = "testing";
+    char* dest = malloc(ft_strlen(s1));
+
+    printf("\nSTRCPYTEST\n%s\n", ft_strcpy(dest, s1));
+    free(dest);
+}
+
 int main() {
     test_strlen();
     test_strcmp();
+    test_strcpy();
 
     return EXIT_SUCCESS;
 }

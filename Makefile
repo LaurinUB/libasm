@@ -10,21 +10,27 @@ IFLAGS = -I
 AR = ar
 ARFLAGS = rcs
 
-SRC = ft_strlen.s ft_strcmp.s
+SRC = ft_strlen.s ft_strcmp.s ft_strcpy.s
 OBJ = $(SRC:%.s=%.o)
+
+CSRC = main.c
+COBJ = $(CSRC:%.c=%.o)
 
 $(LIB): $(OBJ)
 	$(AR) $(ARFLAGS) $(LIB) $(OBJ) 
 
-$(NAME) : $(LIB)
-	$(CC) $(CFLAGS) main.c $(IFLAGS) libasm.h $(LIB) -o $(NAME)
+$(NAME) : $(LIB) $(COBJ)
+	$(CC) $(COBJ) $(IFLAGS) libasm.h $(LIB) -o $(NAME)
 
 all: $(NAME)
 
-re: clean all
+re: fclean all
 
 %.o: %s
 	$(AS) $(ASFLAGS) $(SRC)
 
 clean:
-	rm -f $(OBJ) $(NAME) $(LIB)
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME) $(LIB)

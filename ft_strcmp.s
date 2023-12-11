@@ -13,6 +13,7 @@ _ft_strcmp:
     jnz .cmp                ; if cl != '\0' jmp to compare step
     test dl, dl             ; if dl also == '\0' jmp to end
     jz .end
+
   .cmp:
     cmp cl, dl              ; cmp values of char cl, and dl
     je .loop                ; if cl == dl return to loop
