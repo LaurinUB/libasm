@@ -1,3 +1,4 @@
 *.o
 *.a
 .ccls-cache/
+libasm
