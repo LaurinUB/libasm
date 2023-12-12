@@ -1,6 +1,5 @@
 #include "libasm.h"
-
-#include <string.h>
+#include <errno.h>
 
 void test_strlen() {
     const char test[] = "test the strlen";
@@ -27,7 +26,19 @@ void test_strcpy() {
     free(dest);
 }
 
-#include <unistd.h>
+void test_read() {
+    int fd = open("input.txt", O_RDWR);
+    char *buf = malloc(50);
+    
+    printf("read bytes: %lu\n", ft_read(fd, buf, 50));
+    perror("ft_read");
+    printf("%s\n", buf);
+    bzero(buf, 50);
+    printf("read bytes: %lu\n", read(fd, buf, 50));
+    perror("read");
+    printf("%s", buf);
+    free(buf);
+}
 
 void test_write() {
     printf("\nWRITE TEST\n");
@@ -42,6 +53,8 @@ int main() {
     test_strcmp();
     test_strcpy();
     test_write();
+    errno = 0;
+    test_read();
 
     return EXIT_SUCCESS;
 }
