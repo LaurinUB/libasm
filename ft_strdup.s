@@ -7,22 +7,21 @@ section .text
 global _ft_strdup
 
 _ft_strdup:
-  push  rbp
-  mov   rbp, rsp
-  push  rdi
-  call  _ft_strlen
-  mov   rdi, rax
+  push  rbp         ; initilize stack
+  mov   rbp, rsp    ; put stack pointer to top
+  push  rdi         ; save input on the stack
+  call  _ft_strlen  ; call strlen with input to ft_strdup
+  mov   rdi, rax    ; move result of strlen into input register for malloc
   call  _malloc
-  cmp   rax, 0
-  je    .end
-  mov   rdi, rax
-  pop   rsi
-  call  _ft_strcpy
-  pop   rbp
+  cmp   rax, 0      ; check for malloc fail
+  je    .error      ; return if malloc failed
+  mov   rdi, rax    ; move allocatet pointer as argmuent one
+  pop   rsi         ; get input from stack and put as second argument
+  call  _ft_strcpy  ; move input string into new allocated pointer
+  pop   rbp         ; clear stack
   ret
-  
 
-  .end:
-    pop   rbp
+  .error:
+    pop   rbp       ; clear stack
     ret
 
