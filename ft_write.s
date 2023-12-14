@@ -11,10 +11,11 @@ _ft_write:
   ret
 
   .error:
-    mov   rdx, rax          ; safe error code in rdx
     push  rbp               ; init stack
     mov   rbp, rsp          ; point stack to stack top
+    push  rax               ; safe error code on stack
     call  ___error
+    pop   rdx               ; put error code in rdx
     mov   DWORD [rax], edx  ; set errno = error
     mov   rsp, rbp          ; set stack top to new stack
     pop   rbp               ; remove stack
