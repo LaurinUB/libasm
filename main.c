@@ -26,10 +26,19 @@ void test_strcpy() {
     free(dest);
 }
 
+void test_write() {
+    printf("\nWRITE TEST\n");
+    printf("return value: %lu\n", ft_write(-1, "Hello World!\n", 13));
+    perror("ft_write");
+    printf("return value: %lu\n", write(-1, "Hello World!\n", 13));
+    perror("write");
+}
+
 void test_read() {
     int fd = open("input.txt", O_RDWR);
     char *buf = malloc(50);
     
+    printf("\nREAD TEST\n");
     printf("read bytes: %lu\n", ft_read(fd, buf, 50));
     perror("ft_read");
     printf("%s\n", buf);
@@ -40,21 +49,23 @@ void test_read() {
     free(buf);
 }
 
-void test_write() {
-    printf("\nWRITE TEST\n");
-    printf("return value: %lu\n", ft_write(-1, "Hello World!\n", 13));
-    perror("ft_write");
-    printf("return value: %lu\n", write(-1, "Hello World!\n", 13));
-    perror("write");
+void test_strdup() {
+    const char s1[] = "testing";
+
+    printf("\nSTRDUP TEST\n");
+    char *str = ft_strdup(s1);
+    printf("%s\n", str);
 }
 
 int main() {
     test_strlen();
     test_strcmp();
     test_strcpy();
+    errno = 0;
     test_write();
     errno = 0;
     test_read();
+    test_strdup();
 
     return EXIT_SUCCESS;
 }
