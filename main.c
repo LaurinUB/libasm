@@ -55,6 +55,7 @@ void test_strdup() {
     printf("\nSTRDUP TEST\n");
     char *str = ft_strdup(s1);
     printf("%s\n", str);
+    free(str);
 }
 
 int main() {
@@ -67,5 +68,6 @@ int main() {
     test_read();
     test_strdup();
 
+    system("leaks libasm");
     return EXIT_SUCCESS;
 }
